@@ -1,0 +1,9 @@
+file = input('enter file name: ')
+object = input('enter object name: ')
+with open(file) as f:
+    for line in f:
+        if 'object-group network DM_INLINE_NETWORK' in line:
+            inline = line
+        elif 'network-object object {}'.format(object) in line:
+            obj = line
+            print('{:15}{}'.format(inline, obj))
