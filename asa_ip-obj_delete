@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+
+file = input('enter file name ')
+host = input('enter IP address ')
+object = input('enter object name ')
+print('======================================================')
+
+with open(file) as f:
+    for line in f:
+        if 'object-group network' in line:
+            inline1 = line
+        #elif line.split(' ')[3].strip() == host:
+        elif 'network-object host {}'.format(host) in line:
+            a = line.split(' ')[3].strip()
+            if a == host:
+                obj1 = line
+                print('{:15} no{}'.format(inline1, obj1).strip())
+with open(file) as f:
+    for line in f:
+        if 'object-group network' in line:
+            inline2 = line
+        elif 'network-object object {}'.format(object) in line:
+            obj2 = line
+            print('{:15} no{}'.format(inline2, obj2).strip())
